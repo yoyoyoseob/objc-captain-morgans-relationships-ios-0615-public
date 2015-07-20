@@ -21,6 +21,9 @@
 		318F5FA119F7F64200ADA305 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318F5FA019F7F64200ADA305 /* Foundation.framework */; };
 		318F5FA319F7F64900ADA305 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318F5FA219F7F64900ADA305 /* UIKit.framework */; };
 		318F5FA519F7F65200ADA305 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318F5FA419F7F65200ADA305 /* CoreGraphics.framework */; };
+		71E2AC1C1B59AC8400EF50D1 /* Ship.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E2AC1B1B59AC8400EF50D1 /* Ship.m */; };
+		71E2AC1F1B59AC8500EF50D1 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E2AC1E1B59AC8500EF50D1 /* Engine.m */; };
+		71E2AC221B59AC8500EF50D1 /* Pirate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E2AC211B59AC8500EF50D1 /* Pirate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,12 @@
 		318F5FA019F7F64200ADA305 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		318F5FA219F7F64900ADA305 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		318F5FA419F7F65200ADA305 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		71E2AC1A1B59AC8400EF50D1 /* Ship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Ship.h; path = ../Ship.h; sourceTree = "<group>"; };
+		71E2AC1B1B59AC8400EF50D1 /* Ship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Ship.m; path = ../Ship.m; sourceTree = "<group>"; };
+		71E2AC1D1B59AC8500EF50D1 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Engine.h; path = ../Engine.h; sourceTree = "<group>"; };
+		71E2AC1E1B59AC8500EF50D1 /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Engine.m; path = ../Engine.m; sourceTree = "<group>"; };
+		71E2AC201B59AC8500EF50D1 /* Pirate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pirate.h; path = ../Pirate.h; sourceTree = "<group>"; };
+		71E2AC211B59AC8500EF50D1 /* Pirate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Pirate.m; path = ../Pirate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,18 +111,9 @@
 		318F5F6619F7F51800ADA305 /* objc-Captain-Morgans-Relationships */ = {
 			isa = PBXGroup;
 			children = (
-				318F5F6B19F7F51800ADA305 /* AppDelegate.h */,
-				318F5F6C19F7F51800ADA305 /* AppDelegate.m */,
-				318F5F9919F7F58600ADA305 /* main.storyboard */,
-				318F5F8D19F7F56800ADA305 /* FISPiratesViewController.h */,
-				318F5F8E19F7F56800ADA305 /* FISPiratesViewController.m */,
-				318F5F8F19F7F56800ADA305 /* FISShipsViewController.h */,
-				318F5F9019F7F56800ADA305 /* FISShipsViewController.m */,
-				318F5F9119F7F56800ADA305 /* FISShipDetailViewController.h */,
-				318F5F9219F7F56800ADA305 /* FISShipDetailViewController.m */,
-				318F5F9319F7F56800ADA305 /* FISPiratesDataStore.h */,
-				318F5F9419F7F56800ADA305 /* FISPiratesDataStore.m */,
-				318F5F9B19F7F5CF00ADA305 /* objcCMR.xcdatamodeld */,
+				71E2AC101B59948200EF50D1 /* Views */,
+				71E2AC0F1B59947A00EF50D1 /* Controllers */,
+				71E2AC0E1B59946F00EF50D1 /* Models */,
 				318F5F7419F7F51800ADA305 /* Images.xcassets */,
 				318F5F7619F7F51800ADA305 /* LaunchScreen.xib */,
 				318F5F6719F7F51800ADA305 /* Supporting Files */,
@@ -148,6 +148,45 @@
 				318F5F8219F7F51800ADA305 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		71E2AC0E1B59946F00EF50D1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				71E2AC201B59AC8500EF50D1 /* Pirate.h */,
+				71E2AC211B59AC8500EF50D1 /* Pirate.m */,
+				71E2AC1D1B59AC8500EF50D1 /* Engine.h */,
+				71E2AC1E1B59AC8500EF50D1 /* Engine.m */,
+				71E2AC1A1B59AC8400EF50D1 /* Ship.h */,
+				71E2AC1B1B59AC8400EF50D1 /* Ship.m */,
+				318F5F9B19F7F5CF00ADA305 /* objcCMR.xcdatamodeld */,
+				318F5F9319F7F56800ADA305 /* FISPiratesDataStore.h */,
+				318F5F9419F7F56800ADA305 /* FISPiratesDataStore.m */,
+				318F5F6B19F7F51800ADA305 /* AppDelegate.h */,
+				318F5F6C19F7F51800ADA305 /* AppDelegate.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		71E2AC0F1B59947A00EF50D1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				318F5F8D19F7F56800ADA305 /* FISPiratesViewController.h */,
+				318F5F8E19F7F56800ADA305 /* FISPiratesViewController.m */,
+				318F5F8F19F7F56800ADA305 /* FISShipsViewController.h */,
+				318F5F9019F7F56800ADA305 /* FISShipsViewController.m */,
+				318F5F9119F7F56800ADA305 /* FISShipDetailViewController.h */,
+				318F5F9219F7F56800ADA305 /* FISShipDetailViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		71E2AC101B59948200EF50D1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				318F5F9919F7F58600ADA305 /* main.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,11 +289,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71E2AC221B59AC8500EF50D1 /* Pirate.m in Sources */,
 				318F5F9719F7F56800ADA305 /* FISShipDetailViewController.m in Sources */,
 				318F5F9619F7F56800ADA305 /* FISShipsViewController.m in Sources */,
+				71E2AC1F1B59AC8500EF50D1 /* Engine.m in Sources */,
 				318F5F6D19F7F51800ADA305 /* AppDelegate.m in Sources */,
 				318F5F9D19F7F5CF00ADA305 /* objcCMR.xcdatamodeld in Sources */,
 				318F5F9519F7F56800ADA305 /* FISPiratesViewController.m in Sources */,
+				71E2AC1C1B59AC8400EF50D1 /* Ship.m in Sources */,
 				318F5F6A19F7F51800ADA305 /* main.m in Sources */,
 				318F5F9819F7F56800ADA305 /* FISPiratesDataStore.m in Sources */,
 			);
@@ -438,6 +480,7 @@
 				318F5F8919F7F51800ADA305 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		318F5F8A19F7F51800ADA305 /* Build configuration list for PBXNativeTarget "objc-Captain-Morgans-RelationshipsTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +489,7 @@
 				318F5F8C19F7F51800ADA305 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -7,6 +7,9 @@
 //
 
 #import "FISPiratesDataStore.h"
+#import "Pirate.h"
+#import "Ship.h"
+#import "Engine.h"
 
 @implementation FISPiratesDataStore
 @synthesize managedObjectContext = _managedObjectContext;
@@ -38,6 +41,47 @@
 }
 
 #pragma mark - Core Data stack
+
+- (void) generateTestData
+{
+    NSArray *shipsPerPirate = @[@3, @2, @5];
+    
+    for (NSUInteger i = 0; i < shipsPerPirate.count; i ++)
+    {
+        Pirate *newPirate = [NSEntityDescription insertNewObjectForEntityForName:@"Pirate" inManagedObjectContext:self.managedObjectContext];
+        newPirate.name = [NSString stringWithFormat:@"%lu Pirate", i+1];
+        
+        for (NSUInteger shipCount = 0; shipCount < [shipsPerPirate[i] integerValue]; shipCount ++)
+        {
+            Ship *newShip = [NSEntityDescription insertNewObjectForEntityForName:@"Ship" inManagedObjectContext:self.managedObjectContext];
+            newShip.name = [NSString stringWithFormat:@"%lu Ship", shipCount+1];
+            
+            newShip.engine = [NSEntityDescription insertNewObjectForEntityForName:@"Engine" inManagedObjectContext:self.managedObjectContext];
+            newShip.engine.type = [self randomEngineType];
+            
+            [newPirate addShipsObject:newShip];
+        }
+    }
+}
+                              
+- (NSString *)randomEngineType
+{
+    NSArray *engineTypes = @[@"Sail", @"Gas", @"Electric", @"Plasma Turbines"];
+    
+    NSInteger randomNumber = arc4random_uniform(4);
+    NSString *randomEngine = engineTypes[randomNumber];
+    
+    return randomEngine;
+}
+
+- (void)fetchData
+{
+    NSFetchRequest *pirateFetchRequest = [[NSFetchRequest alloc]initWithEntityName:@"Pirate"];
+    NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    pirateFetchRequest.sortDescriptors = @[nameSorter];
+    
+    self.pirates = [self.managedObjectContext executeFetchRequest:pirateFetchRequest error:nil];
+}
 
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.

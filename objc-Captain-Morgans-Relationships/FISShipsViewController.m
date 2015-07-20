@@ -7,8 +7,14 @@
 //
 
 #import "FISShipsViewController.h"
+#import "FISPiratesDataStore.h"
+#import "Ship.h"
+#import "Engine.h"
+#import "FISShipDetailViewController.h"
 
 @interface FISShipsViewController ()
+
+@property (nonatomic, strong) FISPiratesDataStore *store;
 
 @end
 
@@ -26,6 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.store = [FISPiratesDataStore sharedPiratesDataStore];
+    [self.store fetchData];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -44,24 +53,28 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+// #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+// #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.ships count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shipCell" forIndexPath:indexPath];
     
+    Ship *placeholderShip = self.ships[indexPath.row];
     // Configure the cell...
+    
+    cell.textLabel.text = placeholderShip.name;
+    
+    cell.detailTextLabel.text = placeholderShip.engine.type;
     
     return cell;
 }
@@ -105,16 +118,17 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    FISShipDetailViewController *destination = segue.destinationViewController;
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    destination.ship = self.ships[indexPath.row];
 }
 
- */
 
 @end

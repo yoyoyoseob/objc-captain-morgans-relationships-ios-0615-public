@@ -12,9 +12,13 @@
 @interface FISPiratesDataStore : NSObject
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSArray *pirates;
 
 - (void)save;
 - (NSURL *)applicationDocumentsDirectory;
+
+- (void) generateTestData;
+- (void)fetchData;
 
 + (instancetype) sharedPiratesDataStore;
 

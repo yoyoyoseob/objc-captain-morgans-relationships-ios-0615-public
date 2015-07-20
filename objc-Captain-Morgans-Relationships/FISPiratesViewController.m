@@ -7,8 +7,12 @@
 //
 
 #import "FISPiratesViewController.h"
+#import "FISPiratesDataStore.h"
+#import "Pirate.h"
+#import "FISShipsViewController.h"
 
 @interface FISPiratesViewController ()
+@property (nonatomic, strong) FISPiratesDataStore *store;
 
 @end
 
@@ -26,7 +30,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    self.store = [FISPiratesDataStore sharedPiratesDataStore];
+    
+    [self.store generateTestData];
+    [self.store fetchData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -44,23 +52,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
+// #warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
+// #warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.store.pirates count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"basicCell" forIndexPath:indexPath];
     
+    Pirate *placeholderPirate = self.store.pirates[indexPath.row];
+    
+    cell.textLabel.text = placeholderPirate.name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu", placeholderPirate.ships.count];
     // Configure the cell...
     
     return cell;
@@ -105,16 +116,22 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    FISShipsViewController *destination = segue.destinationViewController;
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    Pirate *selectedPirate = self.store.pirates[indexPath.row];
+    
+    NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES];
+    
+    destination.ships = [selectedPirate.ships sortedArrayUsingDescriptors:@[nameSorter]];
 }
 
- */
+
 
 @end

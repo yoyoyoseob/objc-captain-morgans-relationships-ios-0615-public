@@ -7,13 +7,15 @@
 //
 
 #import "FISShipDetailViewController.h"
+#import "FISPiratesDataStore.h"
+#import "Engine.h"
+#import "Pirate.h"
 
 @interface FISShipDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *shipNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pirateNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *propTypeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *hpLabel;
-@property (weak, nonatomic) IBOutlet UILabel *sailSizeLabel;
+@property (nonatomic, strong) FISPiratesDataStore *store;
 
 @end
 
@@ -31,6 +33,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.store = [FISPiratesDataStore sharedPiratesDataStore];
+    
+    [self.store fetchData];
+    
+    self.shipNameLabel.text = self.ship.name;
+    self.pirateNameLabel.text = self.ship.pirate.name;
+    self.propTypeLabel.text = self.ship.engine.type;
+    
 	// Do any additional setup after loading the view.
 }
 

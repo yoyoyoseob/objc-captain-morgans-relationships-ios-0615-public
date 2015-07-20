@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Ship.h"
 
 @interface FISShipDetailViewController : UIViewController
+
+@property (nonatomic, strong) Ship *ship;
 
 @end
